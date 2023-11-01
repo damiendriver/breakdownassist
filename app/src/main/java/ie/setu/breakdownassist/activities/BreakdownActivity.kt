@@ -2,12 +2,13 @@ package ie.setu.breakdownassist.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import ie.setu.breakdownassist.R
 import ie.setu.breakdownassist.databinding.ActivityBreakdownBinding
 import ie.setu.breakdownassist.main.MainApp
 import ie.setu.breakdownassist.models.BreakdownModel
-import timber.log.Timber
 import timber.log.Timber.Forest.i
 
 class BreakdownActivity : AppCompatActivity() {
@@ -22,22 +23,37 @@ class BreakdownActivity : AppCompatActivity() {
         binding = ActivityBreakdownBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.toolbarAdd.title = title
+        setSupportActionBar(binding.toolbarAdd)
+
         app = application as MainApp
         i("Breakdown Assist has started..")
 
         binding.btnAdd.setOnClickListener() {
             breakdown.title = binding.breakdownTitle.text.toString()
             breakdown.description = binding.description.text.toString()
+            breakdown.phone = binding.phone.text.toString()
             if (breakdown.title.isNotEmpty()) {
-                app.breakdowns.add(breakdown.copy())
-                i("add Button Pressed: ${breakdown}")
-                for (i in app.breakdowns.indices)
-                { i("Breakdown[$i]:${this.app.breakdowns[i]}") }
+                app.breakdowns.create(breakdown.copy())
+                setResult(RESULT_OK)
+                finish()
             }
             else {
-                Snackbar.make(it,"Please Enter a Report", Snackbar.LENGTH_LONG)
+                Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
                     .show()
             }
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_breakdown, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -3,4 +3,7 @@
     <string name="button_addBreakdown">Add Garage</string>
     <string name="hint_breakdownTitle">Garage Name</string>
     <string name="hint_breakdownDescription">Eircode </string>
+    <string name="hint_breakdownPhone">Mobile Number </string>
+    <string name="menu_addBreakdown">Add</string>
+    <string name="menu_cancelBreakdown">Cancel</string>
 </resources>
