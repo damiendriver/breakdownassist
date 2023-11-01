@@ -18,6 +18,7 @@ class BreakdownActivity : AppCompatActivity() {
     lateinit var app : MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var edit = false
         setContentView(R.layout.activity_breakdown)
 
         binding = ActivityBreakdownBinding.inflate(layoutInflater)
@@ -29,19 +30,31 @@ class BreakdownActivity : AppCompatActivity() {
         app = application as MainApp
         i("Breakdown Assist has started..")
 
+        if (intent.hasExtra("breakdown_edit")) {
+            edit = true
+            breakdown = intent.extras?.getParcelable("breakdown_edit")!!
+            binding.btnAdd.setText(R.string.save_breakdown)
+            binding.breakdownTitle.setText(breakdown.title)
+            binding.description.setText(breakdown.description)
+            binding.phone.setText(breakdown.phone)
+        }
+
         binding.btnAdd.setOnClickListener() {
             breakdown.title = binding.breakdownTitle.text.toString()
             breakdown.description = binding.description.text.toString()
             breakdown.phone = binding.phone.text.toString()
-            if (breakdown.title.isNotEmpty()) {
-                app.breakdowns.create(breakdown.copy())
-                setResult(RESULT_OK)
-                finish()
-            }
-            else {
-                Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+            if (breakdown.title.isEmpty()) {
+                Snackbar.make(it,R.string.enter_breakdown_title, Snackbar.LENGTH_LONG)
                     .show()
+            } else {
+                if (edit) {
+                    app.breakdowns.update(breakdown.copy())
+                } else {
+                    app.breakdowns.create(breakdown.copy())
+                }
             }
+            setResult(RESULT_OK)
+            finish()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

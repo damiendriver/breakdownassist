@@ -60,6 +60,7 @@ class BreakdownListActivity : AppCompatActivity(), BreakdownListener {
 
     override fun onBreakdownClick(breakdown: BreakdownModel) {
         val launcherIntent = Intent(this, BreakdownActivity::class.java)
+        launcherIntent.putExtra("breakdown_edit", breakdown)
         getClickResult.launch(launcherIntent)
     }
 

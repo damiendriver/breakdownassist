@@ -6,4 +6,6 @@
     <string name="hint_breakdownPhone">Mobile Number </string>
     <string name="menu_addBreakdown">Add</string>
     <string name="menu_cancelBreakdown">Cancel</string>
+    <string name="enter_breakdown_title"> Please enter a Garage Name </string>
+    <string name="save_breakdown"> Save Garage Edit </string>
 </resources>
