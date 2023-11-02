@@ -15,6 +15,7 @@ import ie.setu.breakdownassist.databinding.ActivityBreakdownBinding
 import ie.setu.breakdownassist.helpers.showImagePicker
 import ie.setu.breakdownassist.main.MainApp
 import ie.setu.breakdownassist.models.BreakdownModel
+import ie.setu.breakdownassist.models.Location
 import timber.log.Timber.Forest.i
 
 class BreakdownActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class BreakdownActivity : AppCompatActivity() {
     var breakdown = BreakdownModel()
     lateinit var app : MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var edit = false
@@ -75,7 +77,16 @@ class BreakdownActivity : AppCompatActivity() {
             i("Select image")
             showImagePicker(imageIntentLauncher)
         }
+
+        binding.breakdownLocation.setOnClickListener {
+            val location = Location(52.249733, -6.340115, 15f)
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
+        }
+
         registerImagePickerCallback()
+        registerMapCallback()
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_breakdown, menu)
@@ -107,5 +118,10 @@ class BreakdownActivity : AppCompatActivity() {
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
+    }
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { i("Map Loaded") }
     }
 }
