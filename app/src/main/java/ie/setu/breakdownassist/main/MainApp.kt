@@ -1,21 +1,22 @@
 package ie.setu.breakdownassist.main
 
 import android.app.Application
+import ie.setu.breakdownassist.models.BreakdownJSONStore
 import ie.setu.breakdownassist.models.BreakdownMemStore
 import ie.setu.breakdownassist.models.BreakdownModel
+import ie.setu.breakdownassist.models.BreakdownStore
 import timber.log.Timber
 import timber.log.Timber.Forest.i
 
 class MainApp : Application() {
 
-    // val breakdowns = ArrayList<BreakdownModel>()
-    val breakdowns = BreakdownMemStore()
+    lateinit var breakdowns: BreakdownStore
+
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        i("BreakdownAssist started")
-        // breakdowns.add(BreakdownModel("One", "About one..."))
-        // breakdowns.add(BreakdownModel("Two", "About two..."))
-        // breakdowns.add(BreakdownModel("Three", "About three..."))
+        // breakdowns = BreakdownMemStore()
+        breakdowns = BreakdownJSONStore(applicationContext)
+        i("Breakdown started")
     }
 }

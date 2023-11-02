@@ -22,9 +22,9 @@ class BreakdownActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBreakdownBinding
     var breakdown = BreakdownModel()
-    lateinit var app : MainApp
-    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
-    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+    lateinit var app: MainApp
+    private lateinit var imageIntentLauncher: ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var edit = false
@@ -51,16 +51,16 @@ class BreakdownActivity : AppCompatActivity() {
                 .load(breakdown.image)
                 .into(binding.breakdownImage)
         }
-            if (breakdown.image != Uri.EMPTY) {
-                binding.chooseImage.setText(R.string.change_breakdown_image)
-            }
+        if (breakdown.image != Uri.EMPTY) {
+            binding.chooseImage.setText(R.string.change_breakdown_image)
+        }
 
         binding.btnAdd.setOnClickListener() {
             breakdown.title = binding.breakdownTitle.text.toString()
             breakdown.description = binding.description.text.toString()
             breakdown.phone = binding.phone.text.toString()
             if (breakdown.title.isEmpty()) {
-                Snackbar.make(it,R.string.enter_breakdown_title, Snackbar.LENGTH_LONG)
+                Snackbar.make(it, R.string.enter_breakdown_title, Snackbar.LENGTH_LONG)
                     .show()
             } else {
                 if (edit) {
@@ -74,12 +74,16 @@ class BreakdownActivity : AppCompatActivity() {
         }
 
         binding.chooseImage.setOnClickListener {
-            i("Select image")
-            showImagePicker(imageIntentLauncher)
+            showImagePicker(imageIntentLauncher,this)
         }
 
         binding.breakdownLocation.setOnClickListener {
             val location = Location(52.249733, -6.340115, 15f)
+            if (breakdown.zoom != 0f) {
+                location.lat = breakdown.lat
+                location.lng = breakdown.lng
+                location.zoom = breakdown.zoom
+            }
             val launcherIntent = Intent(this, MapActivity::class.java)
                 .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)
@@ -88,10 +92,12 @@ class BreakdownActivity : AppCompatActivity() {
         registerImagePickerCallback()
         registerMapCallback()
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_breakdown, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_cancel -> {
@@ -100,6 +106,7 @@ class BreakdownActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun registerImagePickerCallback() {
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
@@ -108,7 +115,12 @@ class BreakdownActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            breakdown.image = result.data!!.data!!
+
+                            val image = result.data!!.data!!
+                            contentResolver.takePersistableUriPermission(image,
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            breakdown.image = image
+
                             Picasso.get()
                                 .load(breakdown.image)
                                 .into(binding.breakdownImage)
@@ -119,9 +131,27 @@ class BreakdownActivity : AppCompatActivity() {
                 }
             }
     }
+
     private fun registerMapCallback() {
         mapIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            { i("Map Loaded") }
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            val location =
+                                result.data!!.extras?.getParcelable<Location>("location")!!
+                            i("Location == $location")
+                            breakdown.lat = location.lat
+                            breakdown.lng = location.lng
+                            breakdown.zoom = location.zoom
+                        } // end of if
+                    }
+
+                    RESULT_CANCELED -> {}
+                    else -> {}
+                }
+            }
     }
 }

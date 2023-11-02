@@ -29,6 +29,9 @@ class BreakdownMemStore : BreakdownStore {
             foundBreakdown.description = breakdown.description
             foundBreakdown.phone = breakdown.phone
             foundBreakdown.image = breakdown.image
+            foundBreakdown.lat = breakdown.lat
+            foundBreakdown.lng = breakdown.lng
+            foundBreakdown.zoom = breakdown.zoom
             logAll()
         }
     }
