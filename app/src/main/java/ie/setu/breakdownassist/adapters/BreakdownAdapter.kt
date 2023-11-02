@@ -3,6 +3,7 @@ package ie.setu.breakdownassist.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ie.setu.breakdownassist.databinding.CardBreakdownBinding
 import ie.setu.breakdownassist.models.BreakdownModel
 
@@ -33,6 +34,7 @@ class BreakdownAdapter constructor(private var breakdowns: List<BreakdownModel>,
             binding.breakdownTitle.text = breakdown.title
             binding.description.text = breakdown.description
             binding.phone.text = breakdown.phone
+            Picasso.get().load(breakdown.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.onBreakdownClick(breakdown) }
         }
     }

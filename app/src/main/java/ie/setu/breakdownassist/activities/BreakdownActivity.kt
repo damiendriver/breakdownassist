@@ -1,6 +1,7 @@
 package ie.setu.breakdownassist.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -48,6 +49,9 @@ class BreakdownActivity : AppCompatActivity() {
                 .load(breakdown.image)
                 .into(binding.breakdownImage)
         }
+            if (breakdown.image != Uri.EMPTY) {
+                binding.chooseImage.setText(R.string.change_breakdown_image)
+            }
 
         binding.btnAdd.setOnClickListener() {
             breakdown.title = binding.breakdownTitle.text.toString()
@@ -97,6 +101,7 @@ class BreakdownActivity : AppCompatActivity() {
                             Picasso.get()
                                 .load(breakdown.image)
                                 .into(binding.breakdownImage)
+                            binding.chooseImage.setText(R.string.change_breakdown_image)
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
