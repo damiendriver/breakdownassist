@@ -42,9 +42,19 @@ class BreakdownJSONStore(private val context: Context) : BreakdownStore {
 
 
     override fun update(breakdown: BreakdownModel) {
-        // todo
+        val breakdownsList = findAll() as ArrayList<BreakdownModel>
+        var foundBreakdown: BreakdownModel? = breakdownsList.find { p -> p.id == breakdown.id }
+        if (foundBreakdown != null) {
+            foundBreakdown.title = breakdown.title
+            foundBreakdown.description = breakdown.description
+            foundBreakdown.phone = breakdown.phone
+            foundBreakdown.image = breakdown.image
+            foundBreakdown.lat = breakdown.lat
+            foundBreakdown.lng = breakdown.lng
+            foundBreakdown.zoom = breakdown.zoom
+        }
+        serialize()
     }
-
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(breakdowns, listType)
         write(context, JSON_FILE, jsonString)
@@ -53,6 +63,10 @@ class BreakdownJSONStore(private val context: Context) : BreakdownStore {
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)
         breakdowns = gsonBuilder.fromJson(jsonString, listType)
+    }
+    override fun delete(breakdown: BreakdownModel) {
+        breakdowns.remove(breakdown)
+        serialize()
     }
 
     private fun logAll() {
@@ -76,4 +90,5 @@ class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
     ): JsonElement {
         return JsonPrimitive(src.toString())
     }
+
 }

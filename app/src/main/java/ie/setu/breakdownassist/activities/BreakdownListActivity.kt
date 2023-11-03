@@ -15,10 +15,12 @@ import ie.setu.breakdownassist.databinding.ActivityBreakdownListBinding
 import ie.setu.breakdownassist.main.MainApp
 import ie.setu.breakdownassist.models.BreakdownModel
 
+
 class BreakdownListActivity : AppCompatActivity(), BreakdownListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBreakdownListBinding
+    private var position: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBreakdownListBinding.inflate(layoutInflater)
@@ -58,9 +60,10 @@ class BreakdownListActivity : AppCompatActivity(), BreakdownListener {
             }
         }
 
-    override fun onBreakdownClick(breakdown: BreakdownModel) {
+    override fun onBreakdownClick(breakdown: BreakdownModel, pos : Int) {
         val launcherIntent = Intent(this, BreakdownActivity::class.java)
         launcherIntent.putExtra("breakdown_edit", breakdown)
+        position = pos
         getClickResult.launch(launcherIntent)
     }
 
@@ -72,5 +75,7 @@ class BreakdownListActivity : AppCompatActivity(), BreakdownListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.breakdowns.findAll().size)
             }
+            else // Deleting
+                if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
 }

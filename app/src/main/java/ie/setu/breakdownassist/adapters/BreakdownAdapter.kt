@@ -8,8 +8,9 @@ import ie.setu.breakdownassist.databinding.CardBreakdownBinding
 import ie.setu.breakdownassist.models.BreakdownModel
 
 interface BreakdownListener {
-    fun onBreakdownClick(breakdown: BreakdownModel)
+    fun onBreakdownClick(breakdown: BreakdownModel, position : Int)
 }
+
 class BreakdownAdapter constructor(private var breakdowns: List<BreakdownModel>,
                                    private val listener: BreakdownListener) :
     RecyclerView.Adapter<BreakdownAdapter.MainHolder>() {
@@ -35,7 +36,7 @@ class BreakdownAdapter constructor(private var breakdowns: List<BreakdownModel>,
             binding.description.text = breakdown.description
             binding.phone.text = breakdown.phone
             Picasso.get().load(breakdown.image).resize(200,200).into(binding.imageIcon)
-            binding.root.setOnClickListener { listener.onBreakdownClick(breakdown) }
+            binding.root.setOnClickListener { listener.onBreakdownClick(breakdown,adapterPosition) }
         }
     }
 }

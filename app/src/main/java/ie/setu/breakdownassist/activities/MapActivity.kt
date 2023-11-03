@@ -1,9 +1,9 @@
 package ie.setu.breakdownassist.activities
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.app.Activity
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -43,9 +43,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,
             .draggable(true)
             .position(loc)
         map.addMarker(options)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
         map.setOnMarkerDragListener(this)
         map.setOnMarkerClickListener(this)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
     }
 
     override fun onMarkerDrag(p0: Marker) {

@@ -39,4 +39,8 @@ class BreakdownMemStore : BreakdownStore {
     private fun logAll() {
         breakdowns.forEach { i("$it") }
     }
+
+    override fun delete(breakdown: BreakdownModel) {
+        breakdowns.remove(breakdown)
+    }
 }
