@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BreakdownAssist."
         tools:targetApi="31">
-
+        <activity
+            android:name=".activities.BreakdownMapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_breakdown_maps"
+            android:theme="@style/Theme.BreakdownAssist." />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
