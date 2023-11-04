@@ -72,6 +72,10 @@ class BreakdownJSONStore(private val context: Context) : BreakdownStore {
     private fun logAll() {
         breakdowns.forEach { Timber.i("$it") }
     }
+    override fun findById(id:Long) : BreakdownModel? {
+        val foundBreakdown: BreakdownModel? = breakdowns.find { it.id == id }
+        return foundBreakdown
+    }
 }
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {

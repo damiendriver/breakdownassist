@@ -5,4 +5,5 @@ interface BreakdownStore {
     fun create(breakdown: BreakdownModel)
     fun update(breakdown: BreakdownModel)
     fun delete(breakdown: BreakdownModel)
+    fun findById(id:Long) : BreakdownModel?
 }

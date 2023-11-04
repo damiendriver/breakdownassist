@@ -43,4 +43,9 @@ class BreakdownMemStore : BreakdownStore {
     override fun delete(breakdown: BreakdownModel) {
         breakdowns.remove(breakdown)
     }
+
+    override fun findById(id:Long) : BreakdownModel? {
+        val foundBreakdown: BreakdownModel? = breakdowns.find { it.id == id }
+        return foundBreakdown
+    }
 }

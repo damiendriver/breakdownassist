@@ -7,6 +7,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.picasso.Picasso
 import ie.setu.breakdownassist.databinding.ActivityBreakdownMapsBinding
 import ie.setu.breakdownassist.databinding.ContentBreakdownMapsBinding
 import ie.setu.breakdownassist.main.MainApp
@@ -46,8 +47,13 @@ class BreakdownMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListen
         map.setOnMarkerClickListener(this)
     }
     override fun onMarkerClick(marker: Marker): Boolean {
-        contentBinding.currentTitle.text = marker.title
-
+        //val breakdown = marker.tag as BreakdownkModel
+        val tag = marker.tag as Long
+        val breakdown = app.breakdowns.findById(tag)
+        contentBinding.currentTitle.text = breakdown!!.title
+        contentBinding.currentDescription.text = breakdown.description
+        contentBinding.currentPhone.text = breakdown.phone
+        Picasso.get().load(breakdown.image).into(contentBinding.currentImage)
         return false
     }
     override fun onDestroy() {
