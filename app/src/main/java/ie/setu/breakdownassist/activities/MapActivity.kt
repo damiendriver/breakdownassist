@@ -25,7 +25,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
         location = intent.extras?.getParcelable<Location>("location")!!
@@ -48,8 +47,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
     }
 
+    override fun onMarkerClick(marker: Marker): Boolean {
+        val loc = LatLng(location.lat, location.lng)
+        marker.snippet = "GPS : $loc"
+        return false
+    }
+
     override fun onMarkerDrag(p0: Marker) {
-        TODO("Not yet implemented")
     }
 
     override fun onMarkerDragEnd(marker: Marker) {
@@ -62,17 +66,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onBackPressed() {
-
         val resultIntent = Intent()
         resultIntent.putExtra("location", location)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
         super.onBackPressed()
-    }
-
-    override fun onMarkerClick(marker: Marker): Boolean {
-        val loc = LatLng(location.lat, location.lng)
-        marker.snippet = "GPS : $loc"
-        return false
     }
 }
