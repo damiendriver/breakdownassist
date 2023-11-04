@@ -5,12 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ie.setu.breakdownassist.databinding.ActivityBreakdownMapsBinding
 import ie.setu.breakdownassist.databinding.ContentBreakdownMapsBinding
 import ie.setu.breakdownassist.main.MainApp
 
-class BreakdownMapsActivity : AppCompatActivity() {
+class BreakdownMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
 
     private lateinit var binding: ActivityBreakdownMapsBinding
     private lateinit var contentBinding: ContentBreakdownMapsBinding
@@ -42,6 +43,12 @@ class BreakdownMapsActivity : AppCompatActivity() {
             map.addMarker(options)?.tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
         }
+        map.setOnMarkerClickListener(this)
+    }
+    override fun onMarkerClick(marker: Marker): Boolean {
+        contentBinding.currentTitle.text = marker.title
+
+        return false
     }
     override fun onDestroy() {
         super.onDestroy()
