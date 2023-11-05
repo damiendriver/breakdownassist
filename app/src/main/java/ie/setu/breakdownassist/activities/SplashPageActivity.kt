@@ -21,7 +21,7 @@ class SplashPageActivity : AppCompatActivity() {
 
         binding.carOwner.setOnClickListener() {
             i("Report Breakdown Button Pressed")
-            val intent = Intent(this, BreakdownActivity::class.java)
+            val intent = Intent(this, CalloutServiceActivity::class.java)
             startActivity(intent)
         }
 

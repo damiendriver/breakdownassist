@@ -17,4 +17,8 @@
     <string name="title_activity_breakdown_maps">Map of All Breakdowns </string>
     <string name="button_carOwner"> Report a Breakdown </string>
     <string name="button_garageInfo"> BreakdownAssist Garages </string>
+    <string name="hint_calloutTitle">Enter Name</string>
+    <string name="hint_calloutCarReg">Car Reg Number </string>
+    <string name="hint_calloutPhone">Mobile Phone Number </string>
+    <string name="button_addCallout">Record Breakdown</string>
 </resources>
