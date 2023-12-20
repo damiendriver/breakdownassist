@@ -59,6 +59,7 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.code.gson:gson:2.9.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
