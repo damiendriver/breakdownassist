@@ -33,7 +33,7 @@
          </activity>
 
          <activity
-             android:name="ie.setu.breakdownassist.activities.Login"
+             android:name="ie.setu.breakdownassist.auth.Login"
              android:exported="true">
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
