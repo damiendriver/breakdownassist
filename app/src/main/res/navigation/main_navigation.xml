@@ -9,10 +9,26 @@
         android:id="@+id/breakdownFragment"
         android:name="ie.setu.breakdownassist.BreakdownFragment"
         android:label="fragment_breakdown"
-        tools:layout="@layout/fragment_breakdown" />
+        tools:layout="@layout/fragment_breakdown" >
+        <action
+            android:id="@+id/action_breakdownFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/listFragment"
         android:name="ie.setu.breakdownassist.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_breakdownFragment"
+            app:destination="@id/breakdownFragment"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
 </navigation>

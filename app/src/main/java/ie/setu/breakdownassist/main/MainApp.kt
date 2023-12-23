@@ -14,7 +14,7 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         // breakdowns = BreakdownMemStore()
-        breakdowns = BreakdownJSONStore(applicationContext)
+        // breakdowns = BreakdownJSONStore(applicationContext)
         i("Breakdown started")
     }
 }

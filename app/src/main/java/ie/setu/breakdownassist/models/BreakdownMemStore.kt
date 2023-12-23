@@ -8,7 +8,7 @@ internal fun getId(): Long {
     return lastId++
 }
 
-class BreakdownMemStore : BreakdownStore {
+object BreakdownMemStore : BreakdownStore {
 
     val breakdowns = ArrayList<BreakdownModel>()
 

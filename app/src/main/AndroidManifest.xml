@@ -17,22 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BreakdownAssist."
         tools:targetApi="31">
-
         <activity
             android:name=".activities.CalloutServiceActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashPageActivity"
-            android:exported="false">
-
-            <!--
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-            -->
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".auth.Login"
             android:exported="true"
