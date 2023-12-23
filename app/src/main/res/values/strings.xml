@@ -23,6 +23,16 @@
     <string name="button_addCallout">Record Breakdown</string>
     <string name="messageLoading">Please Wait while the BreakdownAssist Lists are Loading...</string>
 
+
+    <string name="action_breakdown">Breakdown</string>
+    <string name="action_list">List</string>
+    <string name="action_share">Share</string>
+    <string name="action_send">Send</string>
+    <string name="group_communicate">Communicate</string>
+    <string name="nav_header_title">Breakdown Assist</string>
+    <string name="nav_header_subtitle">ddriver@kilrane.ie</string>
+    <string name="nav_header_desc">Navigation header</string>
+
     <!-- START Firebase Resources-->
 
     <string name="label_emailpassword">Email/Password Authentication</string>

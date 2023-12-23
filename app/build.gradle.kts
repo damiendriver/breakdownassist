@@ -61,6 +61,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("com.google.android.material:material:1.11.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.code.gson:gson:2.9.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

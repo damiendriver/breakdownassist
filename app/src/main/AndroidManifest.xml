@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".main.MainApp"
@@ -17,62 +17,62 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BreakdownAssist."
         tools:targetApi="31">
+
         <activity
             android:name=".activities.CalloutServiceActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashPageActivity"
             android:exported="false">
+
             <!--
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
 
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
-          -->
-         </activity>
+            -->
+        </activity>
+        <activity
+            android:name=".auth.Login"
+            android:exported="true"
+            android:theme="@style/Theme.App.Splashscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-         <activity
-             android:name="ie.setu.breakdownassist.auth.Login"
-             android:theme="@style/Theme.App.Splashscreen"
-             android:exported="true">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.BreakdownMapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_breakdown_maps"
+            android:theme="@style/Theme.BreakdownAssist." />
 
-             <meta-data
-                 android:name="android.app.lib_name"
-                 android:value="" />
-         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
 
-         <activity
-             android:name=".activities.BreakdownMapsActivity"
-             android:exported="false"
-             android:label="@string/title_activity_breakdown_maps"
-             android:theme="@style/Theme.BreakdownAssist." />
+        <activity
+            android:name=".activities.MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map" />
+        <activity
+            android:name=".activities.BreakdownListActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name=".activities.BreakdownActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+    </application>
 
-         <meta-data
-             android:name="com.google.android.geo.API_KEY"
-             android:value="${MAPS_API_KEY}" />
-
-         <activity
-             android:name=".activities.MapActivity"
-             android:exported="false"
-             android:label="@string/title_activity_map" />
-         <activity
-             android:name=".activities.BreakdownListActivity"
-             android:exported="true">
-             <meta-data
-                 android:name="android.app.lib_name"
-                 android:value="" />
-         </activity>
-         <activity android:name=".activities.BreakdownActivity">
-             <meta-data
-                 android:name="android.app.lib_name"
-                 android:value="" />
-         </activity>
-     </application>
-
- </manifest>
+</manifest>
