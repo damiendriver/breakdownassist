@@ -10,7 +10,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ie.setu.breakdownassist.R
-import ie.setu.breakdownassist.activities.CalloutServiceActivity
+import ie.setu.breakdownassist.activities.Home
 import ie.setu.breakdownassist.databinding.LoginBinding
 import timber.log.Timber
 
@@ -43,13 +43,12 @@ class Login : AppCompatActivity() {
         loginRegisterViewModel = ViewModelProvider(this).get(LoginRegisterViewModel::class.java)
         loginRegisterViewModel.liveFirebaseUser.observe(this, Observer
         { firebaseUser -> if (firebaseUser != null)
-            startActivity(Intent(this, CalloutServiceActivity::class.java)) })
+            startActivity(Intent(this, Home::class.java)) })
 
         loginRegisterViewModel.firebaseAuthManager.errorStatus.observe(this, Observer
         { status -> checkStatus(status) })
     }
 
-    //Required to exit app from Login Screen - must investigate this further
     override fun onBackPressed() {
         super.onBackPressed()
         Toast.makeText(this,"Click again to Close App...",Toast.LENGTH_LONG).show()
