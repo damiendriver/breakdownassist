@@ -47,7 +47,7 @@ class BreakdownMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListen
         map.setOnMarkerClickListener(this)
     }
     override fun onMarkerClick(marker: Marker): Boolean {
-        //val breakdown = marker.tag as BreakdownkModel
+        //val breakdown = marker.tag as BreakdownModel
         val tag = marker.tag as Long
         val breakdown = app.breakdowns.findById(tag)
         contentBinding.currentTitle.text = breakdown!!.title

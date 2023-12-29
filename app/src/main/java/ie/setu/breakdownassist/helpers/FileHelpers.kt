@@ -1,6 +1,11 @@
 package ie.setu.breakdownassist.helpers
 
 import android.content.Context
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import com.squareup.picasso.Transformation
+import com.makeramen.roundedimageview.RoundedTransformationBuilder
+import android.graphics.Color
 import timber.log.Timber.Forest.e
 import java.io.*
 
@@ -43,3 +48,27 @@ fun exists(context: Context, filename: String): Boolean {
     val file = context.getFileStreamPath(filename)
     return file.exists()
 }
+
+fun serviceUnavailableMessage(activity: FragmentActivity) {
+    Toast.makeText(
+        activity,
+        "Breakdown Service Unavailable. Try again later",
+        Toast.LENGTH_LONG
+    ).show()
+}
+
+fun serviceAvailableMessage(activity: FragmentActivity) {
+    Toast.makeText(
+        activity,
+        "Breakdown Contacted Successfully",
+        Toast.LENGTH_LONG
+    ).show()
+}
+
+fun customTransformation() : Transformation =
+    RoundedTransformationBuilder()
+        .borderColor(Color.WHITE)
+        .borderWidthDp(2F)
+        .cornerRadiusDp(35F)
+        .oval(false)
+        .build()

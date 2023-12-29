@@ -3,7 +3,7 @@ package ie.setu.breakdownassist.models
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
 
-
+/*
 interface BreakdownStore {
     fun findAll(): List<BreakdownModel>
     fun create(breakdown: BreakdownModel)
@@ -11,7 +11,7 @@ interface BreakdownStore {
     fun delete(breakdown: BreakdownModel)
     fun findById(id:Long) : BreakdownModel?
 }
-/*
+*/
 interface BreakdownStore {
     fun findAll(breakdownsList:
                 MutableLiveData<List<BreakdownModel>>
@@ -25,4 +25,3 @@ interface BreakdownStore {
     fun delete(userid:String, breakdownid: String)
     fun update(userid:String, breakdownid: String, breakdown: BreakdownModel)
 }
-*/

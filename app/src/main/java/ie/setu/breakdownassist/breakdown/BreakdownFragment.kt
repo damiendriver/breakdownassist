@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist
+package ie.setu.breakdownassist.breakdown
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,16 +8,26 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import ie.setu.breakdownassist.R
+import ie.setu.breakdownassist.auth.LoggedInViewModel
 import ie.setu.breakdownassist.databinding.FragmentBreakdownBinding
+import ie.setu.breakdownassist.list.ListViewModel
 import ie.setu.breakdownassist.main.MainApp
+import ie.setu.breakdownassist.models.BreakdownModel
 
 class BreakdownFragment : Fragment() {
 
     lateinit var app: MainApp
+    var totalBreakdown = 0
     private var _fragBinding: FragmentBreakdownBinding? = null
     private val fragBinding get() = _fragBinding!!
+    private lateinit var breakdownViewModel: BreakdownViewModel
+    private val listViewModel: ListViewModel by activityViewModels()
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
