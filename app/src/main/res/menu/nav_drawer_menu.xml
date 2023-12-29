@@ -12,6 +12,11 @@
             android:id="@+id/listFragment"
             android:icon="@drawable/ic_menu_list"
             android:title="@string/action_list" />
+
+        <item
+            android:id="@+id/aboutFragment"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/action_about" />
     </group>
 
     <item android:title="@string/group_communicate">
@@ -30,8 +35,9 @@
     <item android:title="Access Control">
         <menu>
             <item
-                android:id="@+id/nav_sign_out"
+                android:id="@+id/signout"
                 android:icon="@android:drawable/ic_menu_revert"
+                android:onClick="signOut"
                 android:title="@string/sign_out" />
         </menu>
     </item>
