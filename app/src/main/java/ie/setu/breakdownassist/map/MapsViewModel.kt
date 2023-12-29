@@ -3,7 +3,6 @@ package ie.setu.breakdownassist.map
 import android.annotation.SuppressLint
 import android.app.Application
 import android.location.Location
-import android.location.LocationRequest
 import android.os.Looper
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -14,14 +13,14 @@ import timber.log.Timber
 @SuppressLint("MissingPermission")
 class MapsViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var map : GoogleMap
+    lateinit var map: GoogleMap
     var currentLocation = MutableLiveData<Location>()
-    var locationClient : FusedLocationProviderClient
-    val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000)
-        .setWaitForAccurateLocation(false)
-        .setMinUpdateIntervalMillis(5000)
-        .setMaxUpdateDelayMillis(15000)
-        .build()
+    var locationClient: FusedLocationProviderClient
+    val locationRequest = LocationRequest.create()
+        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        .setInterval(10000)  // Set the update interval in milliseconds
+        .setFastestInterval(5000)
+        .setMaxWaitTime(15000)
 
     val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
@@ -31,22 +30,18 @@ class MapsViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         locationClient = LocationServices.getFusedLocationProviderClient(application)
-        locationClient.requestLocationUpdates(locationRequest, locationCallback,
-            Looper.getMainLooper())
+        locationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
     }
 
     fun updateCurrentLocation() {
-        if(locationClient.lastLocation.isSuccessful)
-            locationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    currentLocation.value = location!!
+        locationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    currentLocation.value = location
                     Timber.i("MAP VM LOC SUCCESS: %s", currentLocation.value)
+                } else {
+                    Timber.e("Failed to get last location.")
                 }
-        else // Couldn't get Last Location
-            currentLocation.value = Location("Default").apply {
-                latitude = 52.245696
-                longitude = -7.139102
             }
-        Timber.i("MAP VM LOC : %s", currentLocation.value)
     }
 }

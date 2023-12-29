@@ -31,7 +31,7 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_reportFragment_to_donationDetailFragment"
+            android:id="@+id/action_listFragment_to_breakdownDetailFragment"
             app:destination="@id/breakdownDetailFragment" />
 
     </fragment>

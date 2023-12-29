@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -27,6 +28,7 @@ import ie.setu.breakdownassist.databinding.NavHeaderBinding
 import ie.setu.breakdownassist.firebase.FirebaseImageManager
 import ie.setu.breakdownassist.helpers.customTransformation
 import ie.setu.breakdownassist.main.MainApp
+import ie.setu.breakdownassist.map.MapsViewModel
 import ie.setu.breakdownassist.utils.readImageUri
 import ie.setu.breakdownassist.utils.*
 import timber.log.Timber
@@ -42,6 +44,8 @@ class Home : AppCompatActivity() {
     private lateinit var loggedInViewModel : LoggedInViewModel
     private lateinit var headerView : View
     private lateinit var intentLauncher : ActivityResultLauncher<Intent>
+    private val mapsViewModel : MapsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,6 +66,7 @@ class Home : AppCompatActivity() {
 
         val navView = homeBinding.navView
         navView.setupWithNavController(navController)
+        initNavHeader()
     }
 
     override fun onSupportNavigateUp(): Boolean {

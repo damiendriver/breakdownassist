@@ -14,8 +14,7 @@ interface BreakdownStore {
 */
 interface BreakdownStore {
     fun findAll(breakdownsList:
-                MutableLiveData<List<BreakdownModel>>
-    )
+                MutableLiveData<List<BreakdownModel>>)
     fun findAll(userid:String,
                 breakdownsList:
                 MutableLiveData<List<BreakdownModel>>)

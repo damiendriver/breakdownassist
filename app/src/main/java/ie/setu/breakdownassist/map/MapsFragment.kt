@@ -59,13 +59,13 @@ class MapsFragment : Fragment() {
             mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
 
             listViewModel.observableBreakdownsList.observe(
-                viewLifecycleOwner
-            ) { breakdowns ->
-                breakdowns?.let {
-                    render(breakdowns as ArrayList<BreakdownModel>)
-                    hideLoader(loader)
-                }
-            }
+                viewLifecycleOwner,
+                Observer { breakdowns ->
+                    breakdowns?.let {
+                        render(breakdowns as ArrayList<BreakdownModel>)
+                        hideLoader(loader)
+                    }
+                })
         }
     }
 

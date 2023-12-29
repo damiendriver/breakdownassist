@@ -11,6 +11,7 @@ import timber.log.Timber
 object FirebaseDBManager : BreakdownStore {
 
     var database: DatabaseReference = FirebaseDatabase.getInstance().reference
+
     override fun findAll(breakdownsList: MutableLiveData<List<BreakdownModel>>) {
         database.child("breakdowns")
             .addValueEventListener(object : ValueEventListener {
@@ -32,10 +33,8 @@ object FirebaseDBManager : BreakdownStore {
                 }
             })
     }
-    }
 
     override fun findAll(userid: String, breakdownsList: MutableLiveData<List<BreakdownModel>>) {
-
         database.child("user-breakdowns").child(userid)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -56,7 +55,6 @@ object FirebaseDBManager : BreakdownStore {
                 }
             })
     }
-
     override fun findById(userid: String, breakdownid: String, breakdown: MutableLiveData<BreakdownModel>) {
 
         database.child("user-breakdowns").child(userid)
@@ -126,4 +124,4 @@ fun updateImageRef(userid: String,imageUri: String) {
                 }
             }
         })
-}
+}}
