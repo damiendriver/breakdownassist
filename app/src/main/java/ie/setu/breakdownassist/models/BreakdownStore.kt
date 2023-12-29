@@ -24,4 +24,5 @@ interface BreakdownStore {
     fun create(firebaseUser: MutableLiveData<FirebaseUser>, breakdown: BreakdownModel)
     fun delete(userid:String, breakdownid: String)
     fun update(userid:String, breakdownid: String, breakdown: BreakdownModel)
+    abstract fun updateImageRef(userid: String, toString: String)
 }

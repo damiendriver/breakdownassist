@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import ie.setu.breakdownassist.R
+import ie.setu.breakdownassist.adapters.BreakdownAdapter
 
 abstract class SwipeToEditCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
@@ -19,7 +20,7 @@ abstract class SwipeToEditCallback(context: Context) : ItemTouchHelper.SimpleCal
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
 
-        if (viewHolder.adapterPosition == 10) return 0
+        if ((viewHolder as BreakdownAdapter.MainHolder).readOnlyRow) return 0
         return super.getMovementFlags(recyclerView, viewHolder)
     }
 

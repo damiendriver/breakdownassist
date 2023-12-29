@@ -24,6 +24,7 @@ class ListViewModel : ViewModel() {
 
     fun load() {
         try {
+            readOnly.value = false
             //BreakdownManager.findAll(liveFirebaseUser.value?.email!!, breakdownsList)
             FirebaseDBManager.findAll(liveFirebaseUser.value?.uid!!,breakdownsList)
             Timber.i("Report Load Success : ${breakdownsList.value.toString()}")

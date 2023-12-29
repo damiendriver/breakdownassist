@@ -3,6 +3,7 @@ package ie.setu.breakdownassist.firebase
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import ie.setu.breakdownassist.firebase.FirebaseDBManager.database
 import ie.setu.breakdownassist.models.BreakdownModel
 import ie.setu.breakdownassist.models.BreakdownStore
 import timber.log.Timber
@@ -11,7 +12,26 @@ object FirebaseDBManager : BreakdownStore {
 
     var database: DatabaseReference = FirebaseDatabase.getInstance().reference
     override fun findAll(breakdownsList: MutableLiveData<List<BreakdownModel>>) {
-        TODO("Not yet implemented")
+        database.child("breakdowns")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Timber.i("Firebase Breakdown error : ${error.message}")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val localList = ArrayList<BreakdownModel>()
+                    val children = snapshot.children
+                    children.forEach {
+                        val breakdown = it.getValue(BreakdownModel::class.java)
+                        localList.add(breakdown!!)
+                    }
+                    database.child("breakdowns")
+                        .removeEventListener(this)
+
+                    breakdownsList.value = localList
+                }
+            })
+    }
     }
 
     override fun findAll(email: String, userid: String, breakdownsList: MutableLiveData<List<BreakdownModel>>) {
@@ -73,4 +93,24 @@ object FirebaseDBManager : BreakdownStore {
     override fun update(userid: String, breakdownid: String, breakdown: BreakdownModel) {
         TODO("Not yet implemented")
     }
+
+fun updateImageRef(userid: String,imageUri: String) {
+
+    val userBreakdowns = database.child("user-breakdowns").child(userid)
+    val allBreakdowns = database.child("breakdowns")
+
+    userBreakdowns.addListenerForSingleValueEvent(
+        object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {}
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach {
+                    //Update Users imageUri
+                    it.ref.child("profilepic").setValue(imageUri)
+                    //Update all breakdowns that match 'it'
+                    val breakdown = it.getValue(BreakdownModel::class.java)
+                    allBreakdowns.child(breakdown!!.uid!!)
+                        .child("profilepic").setValue(imageUri)
+                }
+            }
+        })
 }

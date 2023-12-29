@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.navigation.findNavController
@@ -102,7 +103,17 @@ class ListFragment : Fragment(), BreakdownListener {
             }
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.menu_list, menu)
+                menuInflater.inflate(R.menu.menu_report, menu)
+
+                val item = menu.findItem(R.id.toggleBreakdowns) as MenuItem
+                item.setActionView(R.layout.togglebutton_layout)
+                val toggleBreakdowns: SwitchCompat = item.actionView!!.findViewById(R.id.toggleButton)
+                toggleBreakdowns.isChecked = false
+
+                toggleBreakdowns.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) listViewModel.loadAll()
+                    else listViewModel.load()
+                }
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -114,7 +125,7 @@ class ListFragment : Fragment(), BreakdownListener {
     }
 
     private fun render(breakdownsList: ArrayList<BreakdownModel>) {
-        fragBinding.recyclerView.adapter = BreakdownAdapter(breakdownsList,this)
+        fragBinding.recyclerView.adapter = BreakdownAdapter(breakdownsList,this, listViewModel.readOnly.value!!)
         if (breakdownsList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
             fragBinding.breakdownsNotFound.visibility = View.VISIBLE
@@ -135,7 +146,10 @@ class ListFragment : Fragment(), BreakdownListener {
         fragBinding.swiperefresh.setOnRefreshListener {
             fragBinding.swiperefresh.isRefreshing = true
             showLoader(loader,"Downloading Breakdowns")
-            listViewModel.load()
+            if(listViewModel.readOnly.value!!)
+                listViewModel.loadAll()
+            else
+                listViewModel.load()
         }
     }
 

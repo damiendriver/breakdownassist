@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import ie.setu.breakdownassist.R
 import ie.setu.breakdownassist.databinding.CardBreakdownBinding
 import ie.setu.breakdownassist.helpers.customTransformation
 import ie.setu.breakdownassist.models.BreakdownModel
@@ -21,7 +22,7 @@ class BreakdownAdapter constructor(private var breakdowns: ArrayList<BreakdownMo
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardBreakdownBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-        return MainHolder(binding)
+        return MainHolder(binding,readOnly)
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
@@ -36,15 +37,13 @@ class BreakdownAdapter constructor(private var breakdowns: ArrayList<BreakdownMo
         notifyItemRemoved(position)
     }
 
-    class MainHolder(private val binding : CardBreakdownBinding) :
+    class MainHolder(private val binding : CardBreakdownBinding, private val readOnly : Boolean) :
         RecyclerView.ViewHolder(binding.root) {
 
+        val readOnlyRow = readOnly
         fun bind(breakdown: BreakdownModel, listener: BreakdownListener) {
             binding.root.tag = breakdown
             binding.breakdown = breakdown
-            binding.breakdownTitle.text = breakdown.title
-            binding.description.text = breakdown.description
-            binding.phone.text = breakdown.phone
             Picasso.get().load(breakdown.profilepic.toUri())
                 .resize(200, 200)
                 .transform(customTransformation())
