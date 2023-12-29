@@ -49,7 +49,7 @@ class BreakdownDetailFragment : Fragment() {
     }
 
     private fun render() {
-        fragBinding.editMessage.setText("A Message")
+        fragBinding.editPaymenttype.setText("A Message")
         fragBinding.editUpvotes.setText("0")
         fragBinding.breakdownvm = detailViewModel
         Timber.i("Retrofit fragBinding.breakdownvm == $fragBinding.breakdownvm")

@@ -40,7 +40,7 @@ import ie.setu.breakdownassist.utils.showLoader
 class MapsFragment : Fragment() {
 
     private val mapsViewModel: MapsViewModel by activityViewModels()
-    private val reportViewModel: ListViewModel by activityViewModels()
+    private val listViewModel: ListViewModel by activityViewModels()
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
     lateinit var loader : AlertDialog
 
@@ -58,11 +58,11 @@ class MapsFragment : Fragment() {
             mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
             mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
 
-            reportViewModel.observableBreakdownsList.observe(
+            listViewModel.observableBreakdownsList.observe(
                 viewLifecycleOwner
-            ) { donations ->
-                donations?.let {
-                    render(donations as ArrayList<BreakdownModel>)
+            ) { breakdowns ->
+                breakdowns?.let {
+                    render(breakdowns as ArrayList<BreakdownModel>)
                     hideLoader(loader)
                 }
             }
@@ -86,12 +86,12 @@ class MapsFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
     }
 
-    private fun render(donationsList: ArrayList<BreakdownModel>) {
+    private fun render(breakdownsList: ArrayList<BreakdownModel>) {
         var markerColour: Float
-        if (donationsList.isNotEmpty()) {
+        if (breakdownsList.isNotEmpty()) {
             mapsViewModel.map.clear()
-            donationsList.forEach {
-                markerColour = if(it.email.equals(this.reportViewModel.liveFirebaseUser.value!!.email))
+            breakdownsList.forEach {
+                markerColour = if(it.email.equals(this.listViewModel.liveFirebaseUser.value!!.email))
                     BitmapDescriptorFactory.HUE_AZURE + 5
                 else
                     BitmapDescriptorFactory.HUE_RED
@@ -113,16 +113,16 @@ class MapsFragment : Fragment() {
             }
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.menu_report, menu)
+                menuInflater.inflate(R.menu.menu_list, menu)
 
                 val item = menu.findItem(R.id.toggleBreakdowns) as MenuItem
                 item.setActionView(R.layout.togglebutton_layout)
-                val toggleDonations: SwitchCompat = item.actionView!!.findViewById(R.id.toggleButton)
-                toggleDonations.isChecked = false
+                val toggleBreakdowns: SwitchCompat = item.actionView!!.findViewById(R.id.toggleButton)
+                toggleBreakdowns.isChecked = false
 
-                toggleDonations.setOnCheckedChangeListener { _, isChecked ->
-                    if (isChecked) reportViewModel.loadAll()
-                    else reportViewModel.load()
+                toggleBreakdowns.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) listViewModel.loadAll()
+                    else listViewModel.load()
                 }
             }
 
@@ -136,11 +136,11 @@ class MapsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        showLoader(loader, "Downloading Donations")
+        showLoader(loader, "Downloading Breakdowns")
         loggedInViewModel.liveFirebaseUser.observe(viewLifecycleOwner) {
                 firebaseUser -> if (firebaseUser != null) {
-            reportViewModel.liveFirebaseUser.value = firebaseUser
-            reportViewModel.load()
+            listViewModel.liveFirebaseUser.value = firebaseUser
+            listViewModel.load()
         }
         }
     }

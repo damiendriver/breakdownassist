@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/breakdownFragment">
+    app:startDestination="@id/listFragment">
 
     <fragment
         android:id="@+id/breakdownFragment"
         android:name="ie.setu.breakdownassist.breakdown.BreakdownFragment"
-        android:label="fragment_breakdown"
+        android:label="@string/action_breakdown"
         tools:layout="@layout/fragment_breakdown" >
         <action
             android:id="@+id/action_breakdownFragment_to_listFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="ie.setu.breakdownassist.list.ListFragment"
-        android:label="fragment_list"
+        android:label="@string/action_list"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_breakdownFragment"
@@ -30,5 +30,39 @@
             app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_reportFragment_to_donationDetailFragment"
+            app:destination="@id/breakdownDetailFragment" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="ie.setu.breakdownassist.about.AboutFragment"
+        android:label="@string/action_about"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/breakdownDetailFragment"
+        android:name="ie.setu.breakdownassist.detail.BreakdownDetailFragment"
+        android:label="BreakdownDetailFragment"
+        tools:layout="@layout/fragment_breakdown_detail">
+    <action
+        android:id="@+id/action_breakdownDetailFragment_to_listFragment"
+        app:destination="@id/listFragment" />
+    <argument
+        android:name="breakdownid"
+        app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="ie.setu.breakdownassist.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_breakdownDetailFragment"
+            app:destination="@id/breakdownDetailFragment" />
+    </fragment>
+
 </navigation>

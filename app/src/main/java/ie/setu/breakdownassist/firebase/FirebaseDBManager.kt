@@ -34,7 +34,7 @@ object FirebaseDBManager : BreakdownStore {
     }
     }
 
-    override fun findAll(email: String, userid: String, breakdownsList: MutableLiveData<List<BreakdownModel>>) {
+    override fun findAll(userid: String, breakdownsList: MutableLiveData<List<BreakdownModel>>) {
 
         database.child("user-breakdowns").child(userid)
             .addValueEventListener(object : ValueEventListener {
@@ -86,13 +86,26 @@ object FirebaseDBManager : BreakdownStore {
         database.updateChildren(childAdd)
     }
 
-    override fun delete(userid: String, breakdownid: String) {
-        TODO("Not yet implemented")
-    }
+override fun delete(userid: String, breakdownid: String) {
 
-    override fun update(userid: String, breakdownid: String, breakdown: BreakdownModel) {
-        TODO("Not yet implemented")
-    }
+    val childDelete : MutableMap<String, Any?> = HashMap()
+    childDelete["/breakdowns/$breakdownid"] = null
+    childDelete["/user-breakdowns/$userid/$breakdownid"] = null
+
+    database.updateChildren(childDelete)
+}
+
+override fun update(userid: String, breakdownid: String, breakdown: BreakdownModel) {
+
+    val breakdownValues = breakdown.toMap()
+
+    val childUpdate : MutableMap<String, Any?> = HashMap()
+    childUpdate["breakdowns/$breakdownid"] = breakdownValues
+    childUpdate["user-breakdowns/$userid/$breakdownid"] = breakdownValues
+
+    database.updateChildren(childUpdate)
+}
+
 
 fun updateImageRef(userid: String,imageUri: String) {
 

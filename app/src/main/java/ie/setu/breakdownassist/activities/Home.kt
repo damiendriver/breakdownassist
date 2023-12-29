@@ -57,6 +57,9 @@ class Home : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.breakdownFragment, R.id.listFragment, R.id.mapsFragment, R.id.aboutFragment), drawerLayout)
+
         val navView = homeBinding.navView
         navView.setupWithNavController(navController)
     }
