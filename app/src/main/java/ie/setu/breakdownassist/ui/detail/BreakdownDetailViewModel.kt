@@ -16,7 +16,6 @@ class BreakdownDetailViewModel : ViewModel() {
 
     fun getBreakdown(userid:String, id: String) {
         try {
-            //BreakdownManager.findById(email, id, breakdown)
             FirebaseDBManager.findById(userid, id, breakdown)
             Timber.i("Detail getBreakdown() Success : ${
                 breakdown.value.toString()}")

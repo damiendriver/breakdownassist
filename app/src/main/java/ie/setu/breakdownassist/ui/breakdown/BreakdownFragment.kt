@@ -29,7 +29,6 @@ import timber.log.Timber
 class BreakdownFragment : Fragment() {
 
     lateinit var app: MainApp
-    var totalBreakdown = 0
     private var _fragBinding: FragmentBreakdownBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var breakdownViewModel: BreakdownViewModel
@@ -39,8 +38,6 @@ class BreakdownFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        app = activity?.application as MainApp
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -59,16 +56,13 @@ class BreakdownFragment : Fragment() {
     ): View? {
         _fragBinding = FragmentBreakdownBinding.inflate(inflater, container, false)
         val root = fragBinding.root
+        activity?.title = getString(R.string.action_breakdown)
         setupMenu()
         breakdownViewModel = ViewModelProvider(this).get(BreakdownViewModel::class.java)
         breakdownViewModel.observableStatus.observe(viewLifecycleOwner, Observer {
                 status -> status?.let { render(status) }
         })
         setButtonListener(fragBinding)
-
-        fragBinding.breakdownTitle.setText("")
-        fragBinding.description.setText("")
-        fragBinding.phone.setText("")
         return root;
     }
 
@@ -76,15 +70,11 @@ class BreakdownFragment : Fragment() {
         when (status) {
             true -> {
                 view?.let {
-                    //Uncomment this if you want to immediately return to Report
-                    //findNavController().popBackStack()
                 }
             }
             false -> Toast.makeText(context,getString(R.string.breakdownError),Toast.LENGTH_LONG).show()
         }
     }
-
-
 
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
@@ -109,19 +99,24 @@ class BreakdownFragment : Fragment() {
         _fragBinding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+
     fun setButtonListener(layout: FragmentBreakdownBinding) {
         layout.btnAdd.setOnClickListener {
 
-            val breakdownTitle = layout.breakdownTitle.text.toString()
+            val title = layout.breakdownTitle.text.toString()
             val description = layout.description.text.toString()
             val phone = layout.phone.text.toString()
 
-            Timber.i("BreakdownTitle: $breakdownTitle")
+            Timber.i("Title: $title")
             Timber.i("Description: $description")
             Timber.i("Phone: $phone")
 
 
-            breakdownViewModel.addBreakdown(loggedInViewModel.liveFirebaseUser,BreakdownModel(title = breakdownTitle, description = description, phone = phone,email = loggedInViewModel.liveFirebaseUser.value?.email!!))
+            breakdownViewModel.addBreakdown(loggedInViewModel.liveFirebaseUser,BreakdownModel(title = title, description = description, phone = phone,email = loggedInViewModel.liveFirebaseUser.value?.email!!))
 
         }
     }

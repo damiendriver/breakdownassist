@@ -17,7 +17,6 @@ class BreakdownViewModel : ViewModel(){
     fun addBreakdown(firebaseUser: MutableLiveData<FirebaseUser>,
                     breakdown: BreakdownModel) {
         status.value = try {
-            //BreakdownManager.create(breakdown)
             breakdown.profilepic = FirebaseImageManager.imageUri.value.toString()
             FirebaseDBManager.create(firebaseUser,breakdown)
             true

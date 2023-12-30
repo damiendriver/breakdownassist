@@ -49,10 +49,11 @@ class BreakdownDetailFragment : Fragment() {
     }
 
     private fun render() {
-        fragBinding.editTitle.setText("A Message")
-        fragBinding.editDescription.setText("0")
+        fragBinding.editTitle.setText("Garage Title")
+        fragBinding.editDescription.setText("Services Offered")
+        fragBinding.editPhone.setText("086-0000000")
         fragBinding.breakdown = detailViewModel
-        Timber.i("Retrofit fragBinding.breakdownvm == $fragBinding.breakdownvm")
+        Timber.i("Retrofit fragBinding.breakdown == $fragBinding.breakdown")
     }
 
     override fun onResume() {
