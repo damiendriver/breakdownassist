@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.breakdown
+package ie.setu.breakdownassist.ui.breakdown
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,12 +18,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.lifecycle.Observer
 import ie.setu.breakdownassist.R
-import ie.setu.breakdownassist.auth.LoggedInViewModel
+import ie.setu.breakdownassist.ui.auth.LoggedInViewModel
 import ie.setu.breakdownassist.databinding.FragmentBreakdownBinding
-import ie.setu.breakdownassist.list.ListViewModel
+import ie.setu.breakdownassist.ui.list.ListViewModel
 import ie.setu.breakdownassist.main.MainApp
-import ie.setu.breakdownassist.map.MapsViewModel
+import ie.setu.breakdownassist.ui.map.MapsViewModel
 import ie.setu.breakdownassist.models.BreakdownModel
+import timber.log.Timber
 
 class BreakdownFragment : Fragment() {
 
@@ -63,6 +64,7 @@ class BreakdownFragment : Fragment() {
         breakdownViewModel.observableStatus.observe(viewLifecycleOwner, Observer {
                 status -> status?.let { render(status) }
         })
+        setButtonListener(fragBinding)
 
         fragBinding.breakdownTitle.setText("")
         fragBinding.description.setText("")
@@ -105,6 +107,23 @@ class BreakdownFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _fragBinding = null
+    }
+
+    fun setButtonListener(layout: FragmentBreakdownBinding) {
+        layout.btnAdd.setOnClickListener {
+
+            val breakdownTitle = layout.breakdownTitle.text.toString()
+            val description = layout.description.text.toString()
+            val phone = layout.phone.text.toString()
+
+            Timber.i("BreakdownTitle: $breakdownTitle")
+            Timber.i("Description: $description")
+            Timber.i("Phone: $phone")
+
+
+            breakdownViewModel.addBreakdown(loggedInViewModel.liveFirebaseUser,BreakdownModel(title = breakdownTitle, description = description, phone = phone,email = loggedInViewModel.liveFirebaseUser.value?.email!!))
+
+        }
     }
 
     companion object {

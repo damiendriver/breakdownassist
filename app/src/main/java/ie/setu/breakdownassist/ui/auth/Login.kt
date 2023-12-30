@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.auth
+package ie.setu.breakdownassist.ui.auth
 
 
 import android.content.Intent
@@ -16,7 +16,7 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import ie.setu.breakdownassist.R
-import ie.setu.breakdownassist.activities.Home
+import ie.setu.breakdownassist.ui.home.Home
 import ie.setu.breakdownassist.databinding.LoginBinding
 import timber.log.Timber
 

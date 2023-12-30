@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.activities
+package ie.setu.breakdownassist.ui.home
 
 import android.content.Intent
 import android.net.Uri
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -19,16 +18,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseUser
-import com.squareup.picasso.Picasso
 import ie.setu.breakdownassist.R
 import ie.setu.breakdownassist.databinding.HomeBinding
-import ie.setu.breakdownassist.auth.Login
-import ie.setu.breakdownassist.auth.LoggedInViewModel
+import ie.setu.breakdownassist.ui.auth.Login
+import ie.setu.breakdownassist.ui.auth.LoggedInViewModel
 import ie.setu.breakdownassist.databinding.NavHeaderBinding
 import ie.setu.breakdownassist.firebase.FirebaseImageManager
-import ie.setu.breakdownassist.helpers.customTransformation
 import ie.setu.breakdownassist.main.MainApp
-import ie.setu.breakdownassist.map.MapsViewModel
+import ie.setu.breakdownassist.ui.map.MapsViewModel
 import ie.setu.breakdownassist.utils.readImageUri
 import ie.setu.breakdownassist.utils.*
 import timber.log.Timber

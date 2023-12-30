@@ -36,11 +36,11 @@
             android:value="@string/google_api_key" />
 
         <activity
-            android:name=".activities.Home"
+            android:name=".ui.home.Home"
             android:exported="false" />
 
         <activity
-            android:name=".auth.Login"
+            android:name=".ui.auth.Login"
             android:exported="true"
             android:theme="@style/Theme.App.Splashscreen">
             <intent-filter>

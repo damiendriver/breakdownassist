@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.detail
+package ie.setu.breakdownassist.ui.detail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -10,9 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import ie.setu.breakdownassist.auth.LoggedInViewModel
+import ie.setu.breakdownassist.ui.auth.LoggedInViewModel
 import ie.setu.breakdownassist.databinding.FragmentBreakdownDetailBinding
-import ie.setu.breakdownassist.list.ListViewModel
+import ie.setu.breakdownassist.ui.list.ListViewModel
 import timber.log.Timber
 
 class BreakdownDetailFragment : Fragment() {
@@ -35,7 +35,7 @@ class BreakdownDetailFragment : Fragment() {
 
         fragBinding.editBreakdownButton.setOnClickListener {
             detailViewModel.updateBreakdown(loggedInViewModel.liveFirebaseUser.value?.uid!!,
-                args.breakdownid, fragBinding.breakdownvm?.observableBreakdown!!.value!!)
+                args.breakdownid, fragBinding.breakdown?.observableBreakdown!!.value!!)
             findNavController().navigateUp()
         }
 
@@ -49,9 +49,9 @@ class BreakdownDetailFragment : Fragment() {
     }
 
     private fun render() {
-        fragBinding.editPaymenttype.setText("A Message")
-        fragBinding.editUpvotes.setText("0")
-        fragBinding.breakdownvm = detailViewModel
+        fragBinding.editTitle.setText("A Message")
+        fragBinding.editDescription.setText("0")
+        fragBinding.breakdown = detailViewModel
         Timber.i("Retrofit fragBinding.breakdownvm == $fragBinding.breakdownvm")
     }
 

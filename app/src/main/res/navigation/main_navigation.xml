@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/breakdownFragment"
-        android:name="ie.setu.breakdownassist.breakdown.BreakdownFragment"
+        android:name="ie.setu.breakdownassist.ui.breakdown.BreakdownFragment"
         android:label="@string/action_breakdown"
         tools:layout="@layout/fragment_breakdown" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="ie.setu.breakdownassist.list.ListFragment"
+        android:name="ie.setu.breakdownassist.ui.list.ListFragment"
         android:label="@string/action_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -38,13 +38,13 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="ie.setu.breakdownassist.about.AboutFragment"
+        android:name="ie.setu.breakdownassist.ui.about.AboutFragment"
         android:label="@string/action_about"
         tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/breakdownDetailFragment"
-        android:name="ie.setu.breakdownassist.detail.BreakdownDetailFragment"
+        android:name="ie.setu.breakdownassist.ui.detail.BreakdownDetailFragment"
         android:label="BreakdownDetailFragment"
         tools:layout="@layout/fragment_breakdown_detail">
     <action
@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="ie.setu.breakdownassist.map.MapsFragment"
+        android:name="ie.setu.breakdownassist.ui.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <action

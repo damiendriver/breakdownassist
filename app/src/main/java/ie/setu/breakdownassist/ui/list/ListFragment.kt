@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.list
+package ie.setu.breakdownassist.ui.list
 
 import android.os.Bundle
 import android.app.AlertDialog
@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ie.setu.breakdownassist.R
 import ie.setu.breakdownassist.adapters.BreakdownAdapter
 import ie.setu.breakdownassist.adapters.BreakdownListener
-import ie.setu.breakdownassist.auth.LoggedInViewModel
+import ie.setu.breakdownassist.ui.auth.LoggedInViewModel
 import ie.setu.breakdownassist.databinding.FragmentListBinding
 import ie.setu.breakdownassist.models.BreakdownModel
 import ie.setu.breakdownassist.utils.SwipeToDeleteCallback

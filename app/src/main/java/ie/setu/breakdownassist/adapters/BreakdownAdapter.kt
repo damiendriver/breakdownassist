@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import ie.setu.breakdownassist.R
 import ie.setu.breakdownassist.databinding.CardBreakdownBinding
-import ie.setu.breakdownassist.helpers.customTransformation
+import ie.setu.breakdownassist.utils.customTransformation
 import ie.setu.breakdownassist.models.BreakdownModel
 
 interface BreakdownListener {

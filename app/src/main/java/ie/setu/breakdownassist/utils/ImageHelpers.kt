@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.helpers
+package ie.setu.breakdownassist.utils
 
 import android.content.Context
 import android.content.Intent

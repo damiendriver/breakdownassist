@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.about
+package ie.setu.breakdownassist.ui.about
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

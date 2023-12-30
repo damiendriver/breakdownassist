@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.about
+package ie.setu.breakdownassist.ui.about
 
 import android.os.Bundle
 import android.view.LayoutInflater

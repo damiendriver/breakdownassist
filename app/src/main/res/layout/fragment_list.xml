@@ -5,7 +5,7 @@
     android:id="@+id/listFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ie.setu.breakdownassist.list.ListFragment">
+    tools:context="ie.setu.breakdownassist.ui.list.ListFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"

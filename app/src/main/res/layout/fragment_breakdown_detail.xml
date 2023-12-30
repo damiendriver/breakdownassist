@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="breakdownvm"
-            type="ie.setu.breakdownassist.detail.BreakdownDetailViewModel" />
+            name="breakdown"
+            type="ie.setu.breakdownassist.ui.detail.BreakdownDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
             android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/editPaymenttype"
+            app:layout_constraintEnd_toStartOf="@+id/editTitle"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -41,7 +41,7 @@
             android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/editUpvotes"
+            app:layout_constraintEnd_toStartOf="@+id/editDescription"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -53,27 +53,27 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="4dp"
             android:textAlignment="viewStart"
-            android:text="@={breakdownvm.observableBreakdown.title}"
+            android:text="@={breakdown.observableBreakdown.title}"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editPaymenttype" />
+            app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
         <TextView
-            android:id="@+id/editPaymenttype"
+            android:id="@+id/editTitle"
             android:layout_width="212dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="4dp"
             android:gravity="center"
-            android:text="@{breakdownvm.observableBreakdown.description}"
+            android:text="@{breakdown.observableBreakdown.description}"
             android:textAlignment="viewStart"
             android:textColor="@color/color_primary"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editAmount" />
+            app:layout_constraintTop_toBottomOf="@+id/editPhone" />
 
         <EditText
-            android:id="@+id/editUpvotes"
+            android:id="@+id/editDescription"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -81,12 +81,12 @@
             android:ems="10"
             android:inputType="number"
             android:textSize="24sp"
-            android:text="@={breakdownvm.observableBreakdown.phone}"
+            android:text="@={breakdown.observableBreakdown.phone}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hint_breakdownDescription" />
 
         <EditText
-            android:id="@+id/editAmount"
+            android:id="@+id/editPhone"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
@@ -95,7 +95,7 @@
             android:inputType="number"
             android:textAlignment="viewStart"
             android:textSize="24sp"
-            android:text="@={breakdownvm.observableBreakdown.email}"
+            android:text="@={breakdown.observableBreakdown.email}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,7 +109,7 @@
             android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/editAmount"
+            app:layout_constraintEnd_toStartOf="@+id/editPhone"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -124,7 +124,7 @@
             android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/editPaymenttype"
+            app:layout_constraintEnd_toStartOf="@+id/editTitle"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />

@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.auth
+package ie.setu.breakdownassist.ui.auth
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.map
+package ie.setu.breakdownassist.ui.map
 
 import android.annotation.SuppressLint
 import android.app.Application

@@ -1,4 +1,4 @@
-package ie.setu.breakdownassist.map
+package ie.setu.breakdownassist.ui.map
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -30,8 +30,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ie.setu.breakdownassist.R
-import ie.setu.breakdownassist.auth.LoggedInViewModel
-import ie.setu.breakdownassist.list.ListViewModel
+import ie.setu.breakdownassist.ui.auth.LoggedInViewModel
+import ie.setu.breakdownassist.ui.list.ListViewModel
 import ie.setu.breakdownassist.models.BreakdownModel
 import ie.setu.breakdownassist.utils.createLoader
 import ie.setu.breakdownassist.utils.hideLoader
