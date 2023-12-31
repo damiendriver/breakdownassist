@@ -17,14 +17,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import ie.setu.breakdownassist.R
 import ie.setu.breakdownassist.ui.auth.LoggedInViewModel
 import ie.setu.breakdownassist.databinding.FragmentBreakdownBinding
 import ie.setu.breakdownassist.ui.list.ListViewModel
 import ie.setu.breakdownassist.main.MainApp
-import ie.setu.breakdownassist.ui.map.MapsViewModel
 import ie.setu.breakdownassist.models.BreakdownModel
-import timber.log.Timber
+import timber.log.Timber.Forest.i
 
 class BreakdownFragment : Fragment() {
 
@@ -34,7 +34,6 @@ class BreakdownFragment : Fragment() {
     private lateinit var breakdownViewModel: BreakdownViewModel
     private val listViewModel: ListViewModel by activityViewModels()
     private val loggedInViewModel: LoggedInViewModel by activityViewModels()
-    private val mapsViewModel: MapsViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,29 +80,55 @@ class BreakdownFragment : Fragment() {
     }
 
     fun setButtonListener(layout: FragmentBreakdownBinding) {
-        layout.btnAdd.setOnClickListener {
-
+        layout.breakdownButton.setOnClickListener {
             val title = layout.breakdownTitle.text.toString()
-            val description = layout.description.text.toString()
-            val phone = layout.phone.text.toString()
+            if (title.isNotEmpty()) {
+                i("add Button Pressed: $title")
+                Snackbar
+                    .make(it, "Breakdown $title added", Snackbar.LENGTH_LONG)
+                    .show()
 
-            Timber.i("Title: $title")
-            Timber.i("Description: $description")
-            Timber.i("Phone: $phone")
+                val type = when (layout.serviceType.checkedRadioButtonId) {
+                    R.id.radioPetrol -> "Petrol"
+                    R.id.radioTyre -> "Tyre"
+                    else -> {
+                        "Not Know"
+                    }
+                }
+                val selectedOpen = layout.openingHours.checkedRadioButtonId
+                val open = when (selectedOpen) {
+                    R.id.radio24 -> "Open 24 Hour"
+                    R.id.radioNot24 -> "Open 9-5"
+                    else -> {
+                        "Closed"
+                    }
+                }
 
-
-            breakdownViewModel.addBreakdown(
-                loggedInViewModel.liveFirebaseUser,
-                BreakdownModel(
-                    title = title,
-                    description = description,
-                    phone = phone,
-                    email = loggedInViewModel.liveFirebaseUser.value?.email!!
+                val description = layout.description.text.toString()
+                    if (description.isNotEmpty()) {
+                        i("add Button Pressed: $description")
+                        Snackbar
+                            .make(it, "Breakdown $description added", Snackbar.LENGTH_LONG)
+                            .show()
+                }
+                breakdownViewModel.addBreakdown(loggedInViewModel.liveFirebaseUser,
+                    BreakdownModel(
+                        title = title,
+                        type = type,
+                        open = open,
+                        description = description,
+                        email = loggedInViewModel.liveFirebaseUser.value?.email!!
+                    )
                 )
-            )
-
+                i("Added: $title, $type, $open, $description")
+            } else {
+                Snackbar
+                    .make(it, "Please Enter a title", Snackbar.LENGTH_LONG)
+                    .show()
+            }
         }
     }
+
 
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {

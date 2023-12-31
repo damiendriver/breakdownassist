@@ -28,15 +28,11 @@ data class Location(var lat: Double = 0.0,
 @Parcelize
 data class BreakdownModel(
     var uid: String? = "",
-    var title: String = "",
-    var description: String = "",
-    var phone: String = "",
-    var message: String = "Breakdown Assist Here Damien",
-    var image: Uri = Uri.EMPTY,
+    var title: String = "Test",
+    var open: String = "Test1",
+    var type: String = "Test2",
+    var description: String = "Test3",
     var profilepic: String = "",
-    var lat : Double = 0.0,
-    var lng: Double = 0.0,
-    var zoom: Float = 0f,
     var email: String? = "joe@bloggs.com") : Parcelable
 {
     @Exclude
@@ -44,13 +40,10 @@ data class BreakdownModel(
         return mapOf(
             "uid" to uid,
             "title" to title,
+            "open" to open,
+            "type" to type,
             "description" to description,
-            "phone" to phone,
-            "message" to message,
-            "image" to image,
             "profilepic" to profilepic,
-            "lat" to lat,
-            "lng" to lng,
             "email" to email
         )
     }

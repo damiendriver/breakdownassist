@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">BreakdownAssist</string>
-    <string name="button_addBreakdown">Add Garage</string>
+    <string name="button_addBreakdown">Add Breakdown</string>
     <string name="hint_breakdownTitle">Garage Name</string>
-    <string name="hint_breakdownDescription">Service Type </string>
+    <string name="hint_breakdownDescription">Service Offered </string>
     <string name="hint_breakdownPhone">Mobile Number </string>
     <string name="menu_addBreakdown">Add</string>
     <string name="menu_cancelBreakdown">Cancel</string>
@@ -63,11 +63,19 @@
     <string name="breakdownDetails">Breakdown Details</string>
 
     <string name="amt">Amount :</string>
-    <string name="payment">Payment :</string>
+    <string name="phone">Phone :</string>
     <string name="message">Message :</string>
-    <string name="upvotes">UpVotes :</string>
+    <string name="description">Description :</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
+
+    <string name="tyre">Tyre Shop</string>
+    <string name="petrol">Petrol Station</string>
+    <string name="defaultPhone">08*-*******</string>
+    <string name="hours">24 Hour</string>
+    <string name="not24">Open 9to5</string>
+    <string name="opening_hours">Opening Hours</string>
+    <string name="service_type">Service Type</string>
 
     <string name="select_profile_image">Select Profile Image</string>
     <string name="action_location">Location</string>

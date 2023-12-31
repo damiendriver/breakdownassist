@@ -1,133 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/breakdownFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ie.setu.breakdownassist.ui.breakdown.BreakdownFragment">
+    tools:context=".ui.breakdown.BreakdownFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout2"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/breakTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:fitsSystemWindows="true"
-        app:elevation="0dip"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/app_name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:layout_constraintVertical_bias="0.017" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarAdd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:titleTextColor="@color/colorPrimary" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_marginEnd="8dp"
+    <TextView
+        android:id="@+id/breakSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/breakTitle"
+        android:layout_alignEnd="@+id/breakTitle"
+        android:layout_alignParentStart="true"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/enter_breakdown_title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/breakTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <EditText
-            android:id="@+id/breakdownTitle"
-            android:layout_width="365dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/hint_breakdownTitle"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/breakdownTitle"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/breakSubtitle"
+        android:layout_alignEnd="@+id/breakSubtitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/hint_breakdownTitle"
+        android:inputType="text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breakSubtitle"
+        app:layout_constraintVertical_bias="0.037" />
 
-        <EditText
-            android:id="@+id/description"
-            android:layout_width="365dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/hint_breakdownDescription"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/breakdownTitle" />
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/breakdownTitle"
+        android:layout_alignEnd="@+id/breakdownTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/hint_breakdownDescription"
+        android:inputType="text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breakdownTitle"
+        app:layout_constraintVertical_bias="0.037" />
 
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="365dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/hint_breakdownPhone"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description" />
+    <RadioGroup
+        android:id="@+id/serviceType"
+        android:layout_width="157dp"
+        android:layout_height="134dp"
+        android:layout_below="@+id/description"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toStartOf="@+id/openingHours"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/openingHours"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.056">
 
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="365dp"
+        <RadioButton
+            android:id="@+id/radioPetrol"
+            android:layout_width="97dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/button_addBreakdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone" />
+            android:checked="true"
+            android:text="@string/petrol" />
 
-        <Button
-            android:id="@+id/chooseImage"
-            android:layout_width="150dp"
+        <RadioButton
+            android:id="@+id/radioTyre"
+            android:layout_width="119dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/button_addImage"
-            app:layout_constraintStart_toStartOf="@+id/btnAdd"
-            app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
+            android:checked="false"
+            android:text="@string/tyre" />
 
-        <Button
-            android:id="@+id/breakdownLocation"
-            android:layout_width="150dp"
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/openingHours"
+        android:layout_width="114dp"
+        android:layout_height="134dp"
+        android:layout_below="@+id/description"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@+id/serviceType"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toEndOf="@+id/serviceType"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.069">
+
+        <RadioButton
+            android:id="@+id/radio24"
+            android:layout_width="97dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/button_location"
-            app:layout_constraintEnd_toEndOf="@+id/btnAdd"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/chooseImage"
-            app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
+            android:checked="true"
+            android:text="@string/hours" />
 
-        <ImageView
-            android:id="@+id/breakdownImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/breakdownLocation"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+        <RadioButton
+            android:id="@+id/radioNot24"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/not24" />
 
+    </RadioGroup>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/breakdownButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/button_addBreakdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceType"
+        app:layout_constraintVertical_bias="0.04" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

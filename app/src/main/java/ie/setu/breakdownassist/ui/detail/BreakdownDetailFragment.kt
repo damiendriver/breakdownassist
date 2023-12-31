@@ -50,8 +50,9 @@ class BreakdownDetailFragment : Fragment() {
 
     private fun render() {
         fragBinding.editTitle.setText("Garage Title")
-        fragBinding.editDescription.setText("Services Offered")
-        fragBinding.editPhone.setText("086-0000000")
+        fragBinding.editType.setText("Services Offered")
+        fragBinding.editOpen.setText("Hours")
+        fragBinding.editDescription.setText("About Garage")
         fragBinding.breakdown = detailViewModel
         Timber.i("Retrofit fragBinding.breakdown == $fragBinding.breakdown")
     }

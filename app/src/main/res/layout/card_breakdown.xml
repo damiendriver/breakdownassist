@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginBottom="4dp"
         android:elevation="24dp">
 
@@ -36,26 +36,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
                 android:layout_toEndOf="@+id/imageIcon"
                 android:text="@{breakdown.title}"
-                android:textColor="@color/black"
                 android:textSize="24sp"
-                tools:text="hint_breakdownTitle" />
+                tools:text="@string/hint_breakdownTitle"/>
 
             <TextView
-                android:id="@+id/description"
-                android:layout_width="210dp"
+                android:id="@+id/openingHours"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/breakdownTitle"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="4dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_toEndOf="@+id/imageIcon"
-                android:text="@{breakdown.description}"
-                android:textColor="@color/black"
+                android:text="@{breakdown.open}"
                 android:textSize="24sp"
-                tools:text="hint_breakdownDescription" />
+                tools:text="@string/opening_hours"/>
+
+            <TextView
+                android:id="@+id/serviceType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="70dp"
+                android:layout_toEndOf="@+id/imageIcon"
+                android:text="@{breakdown.type}"
+                android:textSize="24sp"
+                tools:text="@string/service_type"/>
 
             <ImageView
                 android:id="@+id/imagefavourite"
@@ -66,20 +78,8 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
-                android:layout_toEndOf="@id/phone"
+                android:layout_toEndOf="@id/openingHours"
                 app:srcCompat="@android:drawable/star_big_off" />
-
-            <TextView
-                android:id="@+id/phone"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_toEndOf="@+id/imageIcon"
-                android:text="@{breakdown.phone}"
-                android:textColor="@color/color_primary"
-                tools:text="hint_breakdownPhone" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
