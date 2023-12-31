@@ -104,7 +104,7 @@ class BreakdownFragment : Fragment() {
                     }
                 }
 
-                val description = layout.description.text.toString()
+                    val description = layout.description.text.toString()
                     if (description.isNotEmpty()) {
                         i("add Button Pressed: $description")
                         Snackbar

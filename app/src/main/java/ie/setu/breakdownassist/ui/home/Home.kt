@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseUser
 import ie.setu.breakdownassist.R
@@ -58,7 +57,6 @@ class Home : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.breakdownFragment, R.id.listFragment, R.id.mapsFragment, R.id.aboutFragment), drawerLayout)
-        setupActionBarWithNavController(navController, appBarConfiguration)
 
 
         val navView = homeBinding.navView
@@ -70,6 +68,7 @@ class Home : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
+
     public override fun onStart() {
         super.onStart()
         loggedInViewModel = ViewModelProvider(this).get(LoggedInViewModel::class.java)

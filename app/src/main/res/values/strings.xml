@@ -58,7 +58,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="breakdownsNotFound">No breakdowns Yet…\nGo Add a breakdown!</string>
+    <string name="breakdownsNotFound">No Garages Yet…\nGo Add a new Service!</string>
     <string name="breakdownError">Error : Couldn\'t Add a breakdown…</string>
     <string name="breakdownDetails">Breakdown Details</string>
 
