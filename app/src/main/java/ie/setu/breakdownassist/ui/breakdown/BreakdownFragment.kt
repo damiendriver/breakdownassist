@@ -33,7 +33,7 @@ class BreakdownFragment : Fragment() {
     private val fragBinding get() = _fragBinding!!
     private lateinit var breakdownViewModel: BreakdownViewModel
     private val listViewModel: ListViewModel by activityViewModels()
-    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
+    private val loggedInViewModel: LoggedInViewModel by activityViewModels()
     private val mapsViewModel: MapsViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +46,10 @@ class BreakdownFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item,
-            requireView().findNavController()) || super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 
     override fun onCreateView(
@@ -59,8 +61,8 @@ class BreakdownFragment : Fragment() {
         activity?.title = getString(R.string.action_breakdown)
         setupMenu()
         breakdownViewModel = ViewModelProvider(this).get(BreakdownViewModel::class.java)
-        breakdownViewModel.observableStatus.observe(viewLifecycleOwner, Observer {
-                status -> status?.let { render(status) }
+        breakdownViewModel.observableStatus.observe(viewLifecycleOwner, Observer { status ->
+            status?.let { render(status) }
         })
         setButtonListener(fragBinding)
         return root;
@@ -72,7 +74,34 @@ class BreakdownFragment : Fragment() {
                 view?.let {
                 }
             }
-            false -> Toast.makeText(context,getString(R.string.breakdownError),Toast.LENGTH_LONG).show()
+
+            false -> Toast.makeText(context, getString(R.string.breakdownError), Toast.LENGTH_LONG)
+                .show()
+        }
+    }
+
+    fun setButtonListener(layout: FragmentBreakdownBinding) {
+        layout.btnAdd.setOnClickListener {
+
+            val title = layout.breakdownTitle.text.toString()
+            val description = layout.description.text.toString()
+            val phone = layout.phone.text.toString()
+
+            Timber.i("Title: $title")
+            Timber.i("Description: $description")
+            Timber.i("Phone: $phone")
+
+
+            breakdownViewModel.addBreakdown(
+                loggedInViewModel.liveFirebaseUser,
+                BreakdownModel(
+                    title = title,
+                    description = description,
+                    phone = phone,
+                    email = loggedInViewModel.liveFirebaseUser.value?.email!!
+                )
+            )
+
         }
     }
 
@@ -88,8 +117,10 @@ class BreakdownFragment : Fragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 // Validate and handle the selected menu item
-                return NavigationUI.onNavDestinationSelected(menuItem,
-                    requireView().findNavController())
+                return NavigationUI.onNavDestinationSelected(
+                    menuItem,
+                    requireView().findNavController()
+                )
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
@@ -103,28 +134,4 @@ class BreakdownFragment : Fragment() {
         super.onResume()
     }
 
-
-    fun setButtonListener(layout: FragmentBreakdownBinding) {
-        layout.btnAdd.setOnClickListener {
-
-            val title = layout.breakdownTitle.text.toString()
-            val description = layout.description.text.toString()
-            val phone = layout.phone.text.toString()
-
-            Timber.i("Title: $title")
-            Timber.i("Description: $description")
-            Timber.i("Phone: $phone")
-
-
-            breakdownViewModel.addBreakdown(loggedInViewModel.liveFirebaseUser,BreakdownModel(title = title, description = description, phone = phone,email = loggedInViewModel.liveFirebaseUser.value?.email!!))
-
-        }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            BreakdownFragment().apply {
-                arguments = Bundle().apply {}
-            }
-    }}
+}

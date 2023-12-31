@@ -3,7 +3,6 @@ package ie.setu.breakdownassist.firebase
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import ie.setu.breakdownassist.firebase.FirebaseDBManager.database
 import ie.setu.breakdownassist.models.BreakdownModel
 import ie.setu.breakdownassist.models.BreakdownStore
 import timber.log.Timber
